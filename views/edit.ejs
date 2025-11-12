@@ -1,0 +1,35 @@
+
+<%- include('partials/header', { title: 'Edit Post' }) %>
+
+  <h1>Edit Post</h1>
+
+  <% /* formAction uses the current post id so students can see the full route here */ %>
+    <form id="postForm" action="/posts/<%= post.id %>" method="post">
+      <input type="hidden" name="_method" value="PUT" />
+      <% if (typeof errors !=='undefined' && errors && errors.length) { %>
+        <div class="message" style="color: #d1242f;">
+          <ul>
+            <% errors.forEach(function (err) { %>
+              <li>
+                <%= err %>
+              </li>
+              <% }) %>
+          </ul>
+        </div>
+        <% } %>
+
+          <label for="title">Title</label>
+          <input id="title" name="title" required
+            value="<%= (typeof post !== 'undefined' && post.title) ? post.title : (typeof title !== 'undefined' ? title : '') %>">
+
+          <label for="body">Body</label>
+          <textarea id="body" name="body" rows="6"
+            required><%= (typeof post !== 'undefined' && post.body) ? post.body : (typeof body !== 'undefined' ? body : '') %></textarea>
+
+          <div class="actions-row">
+            <button class="btn btn-primary" type="submit">Save Changes</button>
+            <a class="btn secondary" href="/posts/<%= (post && post.id) ? post.id : '' %>">Cancel</a>
+          </div>
+    </form>
+
+    <%- include('partials/footer') %>

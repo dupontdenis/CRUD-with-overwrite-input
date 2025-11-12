@@ -1,0 +1,32 @@
+<%- include('partials/header', { title: 'Add New Post' }) %>
+
+  <h1>Add New Post</h1>
+
+  <form id="postForm" action="/posts/new" method="post">
+    <% if (typeof errors !=='undefined' && errors && errors.length) { %>
+      <div class="message" style="color: #d1242f;">
+        <ul>
+          <% errors.forEach(function (err) { %>
+            <li>
+              <%= err %>
+            </li>
+            <% }) %>
+        </ul>
+      </div>
+      <% } %>
+
+        <label for="title">Title</label>
+        <input id="title" name="title" required
+          value="<%= (typeof post !== 'undefined' && post.title) ? post.title : (typeof title !== 'undefined' ? title : '') %>">
+
+        <label for="body">Body</label>
+        <textarea id="body" name="body" rows="6"
+          required><%= (typeof post !== 'undefined' && post.body) ? post.body : (typeof body !== 'undefined' ? body : '') %></textarea>
+
+        <div class="actions-row">
+          <button class="btn btn-primary" type="submit">Add New Post</button>
+          <a class="btn secondary" href="/posts/">Cancel</a>
+        </div>
+  </form>
+
+  <%- include('partials/footer') %>

@@ -1,0 +1,34 @@
+# REST Client tests for this project
+# Open this file in VS Code with the "REST Client" extension and click "Send Request" above each request.
+
+# NOTE: The last request uses a variable `{{postId}}` which must be defined for the REST Client to run.
+# Two ways to provide it:
+# 1) Replace `{{postId}}` inline with a real id (quick and manual).
+# 2) Create a workspace env file at `.vscode/rest-client.env.json` with a value for `postId`.
+#    Example file is added to the repo: `.vscode/rest-client.env.json` (open and edit the value).
+
+### List all posts
+GET http://localhost:3000/posts/
+
+
+### Open the "new post" form
+GET http://localhost:3000/posts/new
+
+
+### Create a new post (form-urlencoded)
+POST http://localhost:3000/posts/new
+Content-Type: application/x-www-form-urlencoded
+
+title=Test+post+from+REST+Client&body=This+post+was+created+using+the+REST+Client+extension
+
+
+### Create a new post (JSON)
+POST http://localhost:3000/posts/new
+Content-Type: application/json
+
+{
+  "title": "Test JSON post",
+  "body": "Created via JSON body. Server accepts JSON because express.json() is enabled."
+}
+
+
